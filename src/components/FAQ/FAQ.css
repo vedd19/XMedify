@@ -1,0 +1,16 @@
+.list li button {
+    background-color: white;
+    border: none;
+    color: #2AA7FF;
+    font-weight: 600;
+}
+
+.list {
+    list-style: none;
+}
+
+.list li {
+    font-weight: 600;
+    color: #1B3C74;
+
+}

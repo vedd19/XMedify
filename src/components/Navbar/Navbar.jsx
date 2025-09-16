@@ -1,7 +1,7 @@
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import Button from '../Button/Button';
-export default function Navbar() {
+export default function Navbar({ isHome }) {
     return (
         <div className='navbar container-fluid'>
 
@@ -9,7 +9,7 @@ export default function Navbar() {
                 <p> The health and well-being of our patients and their health care team will always be our priority, so we follow the best practices for cleanliness.</p>
             </div>
 
-            <div className='nav container'>
+            <div className={'nav container'}>
                 <div className='logo d-flex align-items-center justify-content-center'>
                     <img src={logo} style={{ height: '23px', width: '23px' }} alt="logo" />
                     <span style={{ fontWeight: '700', letterSpacing: '2%', fontSize: "18px", width: '65px', height: '100%', color: '#2AA8FF' }}>Medify</span>

@@ -1,0 +1,150 @@
+.navAndHero {
+    background: linear-gradient(#E7F0FF, #E8F1FF78 47%);
+}
+
+p {
+    margin: 0;
+}
+
+.carouselDiv {
+    /* height: 35vh; */
+    background-color: #ffffff;
+    /* margin-top: 3rem; */
+}
+
+.text {
+    font-size: smaller;
+    margin: 0;
+}
+
+.cardCont {
+    box-shadow: -2px 1px 8px -1px rgb(146, 144, 144);
+    padding: 2rem 2rem;
+    border-radius: 0.5rem;
+}
+
+.specialisationCards {
+    width: 100%;
+}
+
+.specialHeading {
+    color: #1B3C74;
+    padding: 1.5rem 0;
+}
+
+.gridCont {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto;
+    gap: 1rem;
+}
+
+.findBySpecialisationDiv {
+    background: linear-gradient(#E7F0FF, #E8F1FF78 47%);
+}
+
+.docImgDiv {
+    background: linear-gradient(#E1F3FF, #2AA7FF);
+    box-shadow: 0 15px 55px -10px #000000/0.09;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+
+.patientCaring {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+}
+
+.patientCaringMain {
+    background: linear-gradient(#E7F0FF, #E8F1FF78 47%);
+    /* height: 40vh; */
+    padding: 5rem 0;
+}
+
+
+.caringImgDiv2 {
+    width: 100%;
+    height: 10rem;
+    /* margin-top: -4rem; */
+    position: absolute;
+    left: 40;
+    top: -20;
+
+}
+
+.left {
+    max-width: 519px;
+    position: relative;
+}
+
+.left .caringImgDiv {
+    height: 10rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.left .caringImgDiv img {
+    height: 100%;
+    border: 4px solid white;
+}
+
+.left .caringImgDiv2 {
+    height: 10rem;
+    position: absolute;
+    /* bottom: 0; */
+    top: 100px;
+    left: 100px;
+    gap: 0px;
+}
+
+.left .caringImgDiv2 img {
+    height: 100%;
+    border: 4px solid white;
+}
+
+.call {
+    background-color: white;
+    filter: drop-shadow(0 40 40 -15 #94B6CE26);
+    width: 40%;
+    font-size: smaller;
+    border-radius: 8px;
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    padding: 5px 5px;
+    z-index: 1;
+}
+
+.right ul li {
+    list-style-type: none;
+    font-weight: 500;
+    position: relative;
+
+    margin-bottom: 10px;
+}
+
+.OurFamily {
+    background: linear-gradient(#E7F0FF, #E8F1FF78 47%);
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.fcard {
+    filter: drop-shadow(0 15px 45px -5px black 7%);
+    background-color: white;
+    padding: 2rem 0;
+    width: 180px;
+    border-radius: 8px;
+
+}
+
+.rgt {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 5px;
+    width: 40vw;
+    position: relative;
+}
