@@ -21,7 +21,7 @@ const Hero = () => {
                         <Button>Find Centers</Button>
                     </div>
                     <div className='col-6'>
-                        <img src={heroImg} alt="heroImg" />
+                        <img style={{ height: 'auto', maxWidth: '100%' }} src={heroImg} alt="heroImg" />
 
                     </div>
 

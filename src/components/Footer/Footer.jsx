@@ -7,45 +7,45 @@ import { FaFacebook } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { ImYoutube } from "react-icons/im";
 import { IoLogoLinkedin } from "react-icons/io";
+import footerImg from "../../assets/footerphn.png"
+import { FaGooglePlay } from "react-icons/fa";
+import { FaApple } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <div className='upperPart py-4 ' style={{ position: 'relative' }}>
-            <div className='row'>
-                <div className=' container d-flex col-6' style={{ paddingLeft: '5rem' }}>
-                    <div className='phone d-flex' style={{ overflow: 'hidden', transform: 'scale(0.8)', position: 'relative' }}>
-                        <div style={{ height: '306px', width: '144px', background: `url(${phninside}) no-repeat center`, backgroundSize: 'cover', }}>
-                            <img src={phn} alt="img" style={{ overflow: 'hidden', height: '100%', width: '100%' }} />
-                            {/* <img src={phninside} alt="img" style={{ position: 'absolute', zIndex: "1", overflow: 'hidden', top: '0', left: '0' }} /> */}
-                        </div>
-                    </div>
-                    <div className='phone d-flex' style={{ overflow: 'hidden', position: 'absolute', left: '10rem' }}>
-                        <div style={{ height: '306px', width: '144px', background: `url(${phninside}) no-repeat center`, backgroundSize: 'cover', }}>
-                            <img src={phn} alt="img" style={{ overflow: 'hidden', height: '100%', width: '100%' }} />
-                            {/* <img src={phninside} alt="img" style={{ position: 'absolute', zIndex: "1", overflow: 'hidden', top: '0', left: '0' }} /> */}
-                        </div>
-                    </div>
+        <div className='py-4 w-100' style={{ position: 'relative' }}>
 
+            <div className='upperPart d-flex gap-3 py-3 justify-content-evenly w-100'>
+                <div style={{}}>
+                    <img src={footerImg} alt="" />
                 </div>
-                <div className='content container d-flex flex-column gap-3 col-6'>
 
-                    <h1 style={{ color: '#1B3C74' }}>Download the <span style={{ color: '#2AA7FF' }}>Medify</span> App</h1>
+                <div className='d-flex gap-2 flex-column align-items-start'>
+                    <h1 style={{ color: '#1B3C74' }}>Download the <span style={{ color: '#2AA7FF' }}>Medify</span> App </h1>
+                    <p style={{ color: '#414146' }}>Get the link to download teh app</p>
 
-                    <p style={{ fontWeight: '700' }}>Get the link to download the app</p>
+                    <div className='d-flex gap-2' style={{ height: '2.5rem' }}>
+                        <div style={{ padding: '0.5rem', borderRadius: '0.3rem', backgroundColor: 'white', fontWeight: '600', display: "flex", justifyContent: 'center', alignItems: 'center' }}>+91</div>
 
-                    <div className='d-flex gap-2 align-items-center' style={{ height: '2rem' }}>
-                        <div style={{ backgroundColor: "white", padding: '2px', textAlign: 'center', fontWeight: '700' }}>+91</div>
-                        <input style={{ border: 'none' }} type="text" />
+
+                        <input style={{ height: "100%", border: 'none', borderRadius: '0.3rem', }} type="text" placeholder='Enter phone number' />
+
                         <Button>Send SMS</Button>
                     </div>
 
-                    <div className='downloadBtn d-flex gap-3 mt-3'>
-                        <Button>Google Play</Button>
-                        <Button >App Store</Button>
+                    <div className='downloadBtn d-flex gap-2'>
+                        <Button><FaGooglePlay />Google Play</Button>
+                        <Button><FaApple />App Store</Button>
                     </div>
 
+
+
                 </div>
+
             </div>
+
+
+
 
             <div className='lowerPart' style={{ position: 'absolute', bottom: '-200px', width: '100%' }}>
 

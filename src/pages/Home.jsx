@@ -26,6 +26,8 @@ import icon4 from '../assets/familyCard/svg.h2d-af745bd1.png'
 import { FaQ } from 'react-icons/fa6';
 import FAQ from '../components/FAQ/FAQ';
 import Footer from '../components/Footer/Footer';
+import patientCaringImg from '../assets/patientCaring.png'
+import ourFamilyImg from '../assets/ourFamily.png'
 
 
 
@@ -95,17 +97,13 @@ export default function Home() {
             <div className='navAndHero'>
                 <Navbar />
                 <Hero />
-
             </div>
 
-            <div className='searchCardDiv'>
-                {/* <div className='inner container'>
-                    <SearchCard />
-                </div> */}
-
+            <div className='searchCardDiv container'>
+                <SearchCard />
             </div>
 
-            <div className='carouselDiv py-3'>
+            <div className='carouselDiv'>
 
                 <div className='container'>
 
@@ -120,6 +118,20 @@ export default function Home() {
                         }}
                         autoplay={{ delay: 2500, disableOnInteraction: false }}
                         loop={true}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                            },
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 15,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 20,
+                            },
+                        }}
                     >
                         {caraouselImg.map((ele) => <SwiperSlide><CarouselCard img={pagImg} /></SwiperSlide>)}
                     </Swiper>
@@ -134,76 +146,53 @@ export default function Home() {
 
                 <h1 className='specialHeading text-center'>Find By Specialisation</h1>
 
-                <div className='specialisationCards d-flex justify-content-center'>
+                <div className='specialisationCards container d-flex justify-content-center'>
                     <div className='gridCont'>
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%', width: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%', width: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%', width: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%', width: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='col cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
-
-                        <div className='  cardCont d-flex flex-column justify-content-center align-items-center  '>
-                            <div>
+                        <div className='cardCont d-flex flex-column justify-content-center align-items-center '>
+                            <div style={{ height: '100%' }}>
                                 <LuHospital className='text-primary' />
-                            </div>
-                            <div>
                                 <p className='text text-body-secondary text'>Dentistry</p>
                             </div>
                         </div>
@@ -218,23 +207,37 @@ export default function Home() {
 
             </div>
 
-            <div className='OurMedicalSpecial container-fluid py-3'>
+            <div className='OurMedicalSpecial container py-3'>
 
                 <h1 className='specialHeading text-center'>Our Medical Specialist</h1>
 
-                <div className='container-fluid'>
+                <div className='container'>
 
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         spaceBetween={20}
                         slidesPerView={5}
-                        // navigation
+
                         pagination={{
                             clickable: true,
                             el: '.customPagiDiv'
                         }}
                         autoplay={{ delay: 2500, disableOnInteraction: false }}
                         loop={true}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                            },
+                            640: {
+                                slidesPerView: 2,
+                                spaceBetween: 15,
+                            },
+                            1024: {
+                                slidesPerView: 5,
+                                spaceBetween: 20,
+                            },
+                        }}
                     >
                         {docCaraouselImg.map((ele) => <SwiperSlide><DoctorCarouselCard img={docImg} /></SwiperSlide>)}
                     </Swiper>
@@ -247,21 +250,10 @@ export default function Home() {
             <div className="patientCaringMain">
                 <div className='patientCaring container'>
 
-                    <div className="left">
-                        <div className='caringImgDiv'>
-                            <img src={caring1} alt="" />
-                        </div>
-                        <div className='caringImgDiv2'>
-                            <img src={caring2} alt="" />
-                        </div>
 
-                        <div className="call">
-                            <div className='d-flex gap-1 align-items-center justify-content-start'>
 
-                                <Button><MdCall className='text-light' /></Button> <span className='fw-medium'>Free Consultation</span>
-                            </div>
-                            <span>Consult with the best</span>
-                        </div>
+                    <div style={{ width: '100%' }}>
+                        <img style={{ width: '100%' }} src={patientCaringImg} alt="img" />
                     </div>
 
 
@@ -288,6 +280,7 @@ export default function Home() {
 
 
             <div className="blog container-fluid py-4">
+
                 <div className="container">
                     <h6 style={{ color: '#2AA7FF', textAlign: 'center' }}>Blogs & News</h6>
                     <h1 style={{ color: '#1B3C74', textAlign: 'center' }}>Read Our Latest News</h1>
@@ -312,54 +305,11 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="rgt px-4">
-
-                    <div className='d-flex align-items-start'>
-                        <div className='fcard d-flex flex-column align-items-center gap-1 justify-content-center' >
-                            <div style={{ height: '100px', width: '100px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={icon1} style={{ height: '80%', width: '80%' }} alt="" />
-                            </div>
-
-                            <h2>200+</h2>
-                            <p>Hospitals</p>
-                        </div>
-                    </div>
+                <div className="px-4">
 
 
-                    <div className='d-flex justify-content-start'>
-                        <div className='fcard d-flex flex-column align-items-center gap-1 justify-content-center'>
-                            <div style={{ height: '100px', width: '100px', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={icon2} style={{ height: '80%', width: '80%' }} alt="" />
-                            </div>
-
-                            <h2>1000+</h2>
-                            <p>Laboratories</p>
-                        </div>
-                    </div>
-
-
-                    <div className='d-flex justify-content-end'>
-                        <div className='fcard d-flex flex-column align-items-center gap-1 justify-content-center'>
-                            <div style={{ height: '100px', width: '100px', backgroundColor: '#EBFAF1', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={icon3} style={{ height: '80%', width: '80%' }} alt="" />
-                            </div>
-
-                            <h2>700+</h2>
-                            <p>Expert Doctors</p>
-                        </div>
-                    </div>
-
-
-
-                    <div className='d-flex justify-content-end'>
-                        <div className='fcard d-flex flex-column align-items-center gap-1 justify-content-center'>
-                            <div style={{ height: '100px', width: '100px', backgroundColor: '#EBF7FF', borderRadius: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={icon4} style={{ height: '80%', width: '80%' }} alt="" />
-                            </div>
-
-                            <h2>5000+</h2>
-                            <p>Happy Patients</p>
-                        </div>
+                    <div style={{ width: '100%' }}>
+                        <img style={{ width: '100%' }} src={ourFamilyImg} alt="" />
                     </div>
 
 
@@ -371,9 +321,6 @@ export default function Home() {
                 <FAQ />
             </div>
 
-            <div className="footer">
-                <Footer />
-            </div>
 
 
         </div >

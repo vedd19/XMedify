@@ -1,7 +1,9 @@
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import Button from '../Button/Button';
+import { useState } from 'react';
 export default function Navbar({ isHome }) {
+    const [menuOpen, setMenuOpen] = useState(false)
     return (
         <div className='navbar container-fluid'>
 
@@ -16,8 +18,17 @@ export default function Navbar({ isHome }) {
 
                 </div>
 
+                <div
+                    className="hamburger"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                </div>
 
-                <ul className='navList'>
+
+                <ul className={menuOpen ? 'navList active' : 'navList'}>
                     <li>Find Doctors</li>
                     <li>Hospitals</li>
                     <li>Medicines</li>
@@ -29,6 +40,6 @@ export default function Navbar({ isHome }) {
 
             </div>
 
-        </div>
+        </div >
     );
 }
