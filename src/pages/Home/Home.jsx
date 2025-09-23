@@ -1,7 +1,7 @@
 import './Home.css'
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Hero from "../../components/Hero/Hero";
-import { useOutletContext } from "react-router-dom";
+// import { useOutletContext } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import SearchCard from '../../components/SearchCard/SearchCard';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -28,6 +28,7 @@ import FAQ from '../../components/FAQ/FAQ';
 import Footer from '../../components/Footer/Footer';
 import patientCaringImg from '../../assets/patientCaring.png'
 import ourFamilyImg from '../../assets/ourFamily.png'
+import { context } from '../../Context';
 
 
 
@@ -37,15 +38,15 @@ import ourFamilyImg from '../../assets/ourFamily.png'
 // export const isHomeContext = createContext();
 
 export default function Home() {
-    const { setIsHome } = useOutletContext();
-
+    const { setIsHome, setIsFindDoctor } = useContext(context)
     const [caraouselImg, setCaraouselImg] = useState([{ img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg },])
 
     const [docCaraouselImg, setDocCaraouselImg] = useState([{ img: docImg }, { img: docImg }, { img: docImg }, { img: docImg }, { img: docImg }])
 
     useEffect(() => {
         setIsHome(true);
-    }, [])
+        setIsFindDoctor(false)
+    }, []);
 
 
 
@@ -102,7 +103,7 @@ export default function Home() {
             </div>
 
             <div className='searchCardDiv container'>
-                <SearchCard  />
+                <SearchCard />
             </div>
 
             <div className='carouselDiv'>

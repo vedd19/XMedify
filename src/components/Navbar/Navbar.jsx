@@ -1,9 +1,12 @@
 import './Navbar.css'
 import logo from '../../assets/logo.png'
 import Button from '../Button/Button';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { context } from '../../Context';
 export default function Navbar({ isHome }) {
     const [menuOpen, setMenuOpen] = useState(false)
+    const { isFindDoctor } = useContext(context)
     return (
         <div className='navbar container-fluid'>
 
@@ -29,13 +32,13 @@ export default function Navbar({ isHome }) {
 
 
                 <ul className={menuOpen ? 'navList active' : 'navList'}>
-                    <li>Find Doctors</li>
+                    <li id={isFindDoctor ? 'mark' : 'not-mark'}><Link to="/search-results" style={{ textDecoration: 'none', color: isFindDoctor ? '#2AA7FF' : '#102851' }}>Find Doctors</Link></li>
                     <li>Hospitals</li>
                     <li>Medicines</li>
                     <li>Surgeries</li>
                     <li>Software For Provider</li>
                     <li>Facilities</li>
-                    <li><Button className='myBookingBtn'>My Bookings</Button></li>
+                    <li><Link to="/my-bookings"><Button className='myBookingBtn'>My Bookings</Button></Link></li>
                 </ul>
 
             </div>

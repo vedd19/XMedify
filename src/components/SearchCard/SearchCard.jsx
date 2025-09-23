@@ -28,13 +28,13 @@ export default function SearchCard() {
         )
     }
 
-    const { setIsHome } = useOutletContext();
+    // const { setIsHome } = useOutletContext();
 
 
 
 
 
-    const { hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch } = useContext(context)
+    const { hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, setIsHome } = useContext(context)
 
 
 

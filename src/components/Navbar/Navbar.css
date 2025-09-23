@@ -47,7 +47,8 @@
 }
 
 .navList li {
-    font-size: x-small;
+    font-size: small;
+    cursor: pointer;
 }
 
 .myBookingBtn {
@@ -95,4 +96,16 @@
     .hamburger {
         display: flex;
     }
+}
+
+/* 
+#not-mark li {
+    text-decoration: none;
+    color: black;
+} */
+
+#mark {
+    /* color: #2AA7FF; */
+    font-weight: 600;
+    text-decoration: none;
 }

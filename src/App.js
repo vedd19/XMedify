@@ -20,7 +20,8 @@ function App() {
   })
 
   const [isBooking, setIsBooking] = useState(false);
-  const [bookedData, setBookedData] = useState([]);
+  const [bookedData, setBookedData] = useState(JSON.parse(localStorage.getItem('bookings')) || []);
+  const [isFindDoctor, setIsFindDoctor] = useState(false)
 
   useEffect(() => {
     async function getStates() {
@@ -121,10 +122,10 @@ function App() {
   return (
 
     <>
-      <context.Provider value={{ hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData }}>
-        {console.log(isHome, "isHome")}
+      <context.Provider value={{ hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, isHome, setIsHome, setIsFindDoctor, isFindDoctor }}>
+        {/* {console.log(isHome, "isHome")} */}
         {!isHome && <Navbar />}
-        <Outlet context={{ setIsHome }} />
+        <Outlet />
         <Footer />
       </context.Provider >
     </>

@@ -18,6 +18,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { enqueueSnackbar } from 'notistack';
+import { useOutletContext } from 'react-router-dom';
 
 
 
@@ -25,7 +26,7 @@ import { enqueueSnackbar } from 'notistack';
 
 
 
-export const HospitalCard = ({ name, city, state, rating, address, isBooking, bookedData, setBookedData, id }) => {
+export const HospitalCard = ({ name, city, state, rating, address, isBooking, bookedData, setBookedData, id, time, date }) => {
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHospital, setSelectedHospital] = useState(null);
@@ -70,9 +71,9 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
         console.log(selectedDate, "selectedDate");
         console.log(selectedTime, "selectedTime");
 
-        const newBooking = [...bookedData, { hospital: id, date: selectedDate, time: selectedTime }];
+        const newBooking = [...bookedData, { hospital: id, name: name, city: city, state: state, rating: rating, address: address, isBooking: isBooking, date: selectedDate, time: selectedTime }];
         setBookedData(newBooking);
-        localStorage.setItem('bookedData', JSON.stringify(newBooking));
+        localStorage.setItem('bookings', JSON.stringify(newBooking));
         console.log(bookedData, "bookedData");
 
         enqueueSnackbar(`Appointment booked on ${selectedDate} at ${selectedTime} in ${name}, visit my-bookings to check`, { variant: 'success' });
@@ -123,17 +124,20 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
 
                     </div>
 
+
                 </div>
 
                 {isBooking ?
-                    (<div>
+                    (
                         <div className='booked col-md-3'>
+                            <div className='py-4'>
+                                <Button size='small' sx={{ margin: '0.3rem', borderColor: '#2AA7FF', fontWeight: '400', color: '#2AA7FF' }} variant='outlined'>{time}</Button>
+                                <Button size='small' sx={{ margin: '0.3rem', borderColor: '#00A500', fontWeight: '700', color: '#007100' }} variant='outlined'>{date}</Button>
+                            </div>
 
-                            <Button variant='outlined'>time</Button>
-                            <Button variant='outlined'>date</Button>
 
                         </div>
-                    </div>) : (
+                    ) : (
                         <div className="book col-md-3">
 
                             <p style={{ fontWeight: '500', color: '#01A400' }}>Available Today</p>
@@ -142,6 +146,8 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
                         </div>
                     )
                 }
+
+
 
 
 
@@ -249,9 +255,15 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
 
 export default function SearchResults() {
 
-    const { hospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData } = useContext(context);
+    const { hospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor } = useContext(context);
     const [hospitalCount, setHospitalCount] = useState(0);
     const [storedHospitals, setStoredHospitals] = useState([]);
+
+
+    useEffect(() => {
+        setIsHome(false);
+        setIsFindDoctor(true);
+    }, []);
 
     useEffect(() => {
         const storedHos = JSON.parse(localStorage.getItem('hospitals')) || [];
