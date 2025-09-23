@@ -1,6 +1,10 @@
 .upperPart {
     background: linear-gradient(#E7F0FF, #E8F1FF78 47%);
-    width: 100vw;
+    /* width: 100vw; */
+}
+
+.upperPart .mobImg {
+    width: 100%;
 }
 
 .downloadBtn .button {
@@ -32,4 +36,33 @@
 
 .downloadBtn {
     margin-top: 2rem;
+}
+
+@media(max-width:700px) {
+    .list ul li {
+        font-size: x-small;
+    }
+
+    /* .sms {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+
+    } */
+}
+
+/* @media(max-width:600px) { */
+/* .listDiv:last-child {
+        display: none;
+    } */
+
+/* .sms {
+        display: none;
+    } */
+/* } */
+
+@media(max-width:375px) {
+    .downloadBtn button {
+        font-size: x-small;
+    }
 }

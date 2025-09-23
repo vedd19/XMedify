@@ -1,40 +1,40 @@
 import './Home.css'
 import { createContext, useEffect, useState } from "react";
-import Hero from "../components/Hero/Hero";
+import Hero from "../../components/Hero/Hero";
 import { useOutletContext } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
-import SearchCard from '../components/SearchCard/SearchCard';
+import Navbar from "../../components/Navbar/Navbar";
+import SearchCard from '../../components/SearchCard/SearchCard';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import pagImg from '../assets/paginationImg.png'
-import docImg from '../assets/docImg.png'
-import caring1 from '../assets/caring1.png'
-import caring2 from '../assets/caring2.png'
+import pagImg from '../../assets/paginationImg.png'
+import docImg from '../../assets/docImg.png'
+import caring1 from '../../assets/caring1.png'
+import caring2 from '../../assets/caring2.png'
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { LuHospital } from "react-icons/lu";
-import Button from '../components/Button/Button';
+import Button from '../../components/Button/Button';
 import { MdCall } from "react-icons/md";
-import listicon from '../assets/listIcon.png'
-import newsImg from '../assets/newsImg.png'
+import listicon from '../../assets/listIcon.png'
+import newsImg from '../../assets/newsImg.png'
 import { IoMdPerson } from "react-icons/io";
-import icon1 from '../assets/familyCard/span.elementor-icon.png'
-import icon2 from '../assets/familyCard/span.elementor-icon (1).png'
-import icon3 from '../assets/familyCard/svg.h2d-2dcead65.png'
-import icon4 from '../assets/familyCard/svg.h2d-af745bd1.png'
+import icon1 from '../../assets/familyCard/span.elementor-icon.png'
+import icon2 from '../../assets/familyCard/span.elementor-icon (1).png'
+import icon3 from '../../assets/familyCard/svg.h2d-2dcead65.png'
+import icon4 from '../../assets/familyCard/svg.h2d-af745bd1.png'
 import { FaQ } from 'react-icons/fa6';
-import FAQ from '../components/FAQ/FAQ';
-import Footer from '../components/Footer/Footer';
-import patientCaringImg from '../assets/patientCaring.png'
-import ourFamilyImg from '../assets/ourFamily.png'
+import FAQ from '../../components/FAQ/FAQ';
+import Footer from '../../components/Footer/Footer';
+import patientCaringImg from '../../assets/patientCaring.png'
+import ourFamilyImg from '../../assets/ourFamily.png'
 
 
 
 
 
 
-export const isHomeContext = createContext();
+// export const isHomeContext = createContext();
 
 export default function Home() {
     const { setIsHome } = useOutletContext();
@@ -43,10 +43,12 @@ export default function Home() {
 
     const [docCaraouselImg, setDocCaraouselImg] = useState([{ img: docImg }, { img: docImg }, { img: docImg }, { img: docImg }, { img: docImg }])
 
-    // useEffect(() => {
+    useEffect(() => {
+        setIsHome(true);
+    }, [])
 
-    setIsHome(true);
-    // }, [setIsHome])
+
+
 
 
     const CarouselCard = ({ img }) => {
@@ -100,7 +102,7 @@ export default function Home() {
             </div>
 
             <div className='searchCardDiv container'>
-                <SearchCard />
+                <SearchCard  />
             </div>
 
             <div className='carouselDiv'>

@@ -17,14 +17,14 @@ export default function Footer() {
 
             <div className='upperPart d-flex gap-3 py-3 justify-content-evenly w-100'>
                 <div style={{}}>
-                    <img src={footerImg} alt="" />
+                    <img className='mobImg' src={footerImg} alt="" />
                 </div>
 
                 <div className='d-flex gap-2 flex-column align-items-start'>
                     <h1 style={{ color: '#1B3C74' }}>Download the <span style={{ color: '#2AA7FF' }}>Medify</span> App </h1>
                     <p style={{ color: '#414146' }}>Get the link to download teh app</p>
 
-                    <div className='d-flex gap-2' style={{ height: '2.5rem' }}>
+                    <div className='sms d-none d-md-flex gap-2 flex-md-wrap' style={{ height: '2.5rem' }}>
                         <div style={{ padding: '0.5rem', borderRadius: '0.3rem', backgroundColor: 'white', fontWeight: '600', display: "flex", justifyContent: 'center', alignItems: 'center' }}>+91</div>
 
 
@@ -33,10 +33,16 @@ export default function Footer() {
                         <Button>Send SMS</Button>
                     </div>
 
-                    <div className='downloadBtn d-flex gap-2'>
+                    <div className='downloadBtn d-none d-md-flex gap-2 mt-5'>
                         <Button><FaGooglePlay />Google Play</Button>
                         <Button><FaApple />App Store</Button>
                     </div>
+                    <div className='downloadBtn d-flex d-md-none gap-2 mt-5'>
+                        <Button><FaGooglePlay /></Button>
+                        <Button><FaApple /></Button>
+                    </div>
+
+
 
 
 
@@ -77,7 +83,7 @@ export default function Footer() {
                         </div>
 
                     </div>
-                    <div className="col-8 d-flex container py-4 justify-content-evenly">
+                    <div className="listDiv col-8 d-flex container py-4 justify-content-evenly ">
 
                         <div className='list'>
                             <ul>
@@ -97,7 +103,7 @@ export default function Footer() {
                                 <li>Privacy Policy</li>
                             </ul>
                         </div>
-                        <div className='list'>
+                        <div className='list d-none d-md-block'>
                             <ul>
                                 <li>About us</li>
                                 <li>Our Pricing</li>

@@ -1,4 +1,4 @@
-import { TextField, InputAdornment } from '@mui/material'
+import { TextField, InputAdornment, Autocomplete, Box } from '@mui/material'
 import Button from '../Button/Button'
 import './SearchCard.css'
 import SearchIcon from '@mui/icons-material/Search';
@@ -7,6 +7,12 @@ import drugStore from '../../assets/searchCard/Drugstore.png'
 import hospital from '../../assets/searchCard/Hospital.png'
 import capsule from '../../assets/searchCard/Capsule.png'
 import doctor from '../../assets/searchCard/Doctor.png'
+import { useContext, useEffect, useState } from 'react';
+import { enqueueSnackbar, useSnackbar } from 'notistack';
+import { Link, useOutletContext } from 'react-router-dom';
+import { context } from '../../Context';
+
+
 
 
 
@@ -22,33 +28,91 @@ export default function SearchCard() {
         )
     }
 
+    const { setIsHome } = useOutletContext();
+
+
+
+
+
+    const { hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch } = useContext(context)
+
+
+
+    useEffect(() => { setIsHome(false) }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
-        <div className="searchDiv container">
+
+
+        // { console.log(hospitals, "hospitals in search card") }
+        < div className="searchDiv container" >
             <div className='search'>
-                <TextField className='input' placeholder='State' variant='outlined'
+
+
+
+                <Autocomplete
+                    value={selectedData.state || null}
+                    onChange={(e, newValue) => handleStateChange(e, newValue)}
+                    freeSolo
+                    options={states.map((option) => option)}
                     slotProps={{
-                        input: {
-                            startAdornment: (
-                                <InputAdornment position='start'>
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                        },
+                        listbox: { id: "state" }
                     }}
-                />
-                <TextField className='input' placeholder='City' variant='outlined'
-                    slotProps={{
-                        input: {
+                    renderInput={(params) => <TextField fullWidth {...params} placeholder='State'
+                        InputProps={{
+                            ...params.InputProps,
                             startAdornment: (
-                                <InputAdornment position='start'>
-                                    <SearchIcon />
-                                </InputAdornment>
-                            ),
-                        },
-                    }}
+                                <>
+                                    <SearchIcon style={{ color: 'gray' }} />
+                                    {params.InputProps.startAdornment}
+                                </>
+                            )
+                        }}
+                    />
+                    }
                 />
 
-                <Button><SearchIcon /> Search</Button>
+
+                <Autocomplete
+                    value={selectedData.city || null}
+                    onChange={(e, newValue) => handleCityChange(e, newValue)}
+                    freeSolo
+                    disabled={!selectedData.state}
+                    options={cities.map((option) => option)}
+                    slotProps={{
+                        listbox: { id: "city" }
+                    }}
+                    renderInput={(params) => <TextField fullWidth {...params} placeholder='City'
+                        InputProps={{
+                            ...params.InputProps,
+                            startAdornment: (
+                                <>
+                                    <SearchIcon style={{ color: 'gray' }} />
+                                    {params.InputProps.startAdornment}
+                                </>
+                            )
+                        }}
+                    />
+                    }
+                />
+
+
+                <Link to={'/search-results'}><Button type={'submit'} onClick={handleSearch} id={'searchBtn'}><SearchIcon /> Search</Button></Link>
             </div>
 
             <p style={{ fontWeight: '500', textAlign: 'center', marginBottom: '1rem' }}>You may be looking for</p>
@@ -60,6 +124,7 @@ export default function SearchCard() {
                 <SelectiveCards img={capsule} name={"Medical Store"} />
                 <SelectiveCards img={ambulance} name={"Ambulance"} />
             </div>
-        </div>
+        </div >
+
     )
 }

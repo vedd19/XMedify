@@ -13,6 +13,10 @@
 
 }
 
+.MuiAutocomplete-root {
+    width: 300px;
+}
+
 .MuiFormControl-root .MuiInputBase-root input {
     padding: 0.5rem 0.5rem;
 }

@@ -1,0 +1,256 @@
+.blueDiv {
+    width: 100%;
+    height: 10vh;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background: linear-gradient(#2AA7FF, #0C8CE5);
+    /* position: relative; */
+}
+
+.searchDivresults {
+    width: 60vw;
+    /* height: 10vh; */
+    margin-top: -2rem;
+    background-color: #fff;
+    box-shadow: 6px 6px 35px 0 #1028511C;
+    border-radius: 16px;
+    z-index: 1;
+    padding: 1rem;
+    margin-bottom: 20vh;
+}
+
+@media (max-width: 768px) {
+    .searchDivresults {
+        width: 90vw;
+        /* height: auto; */
+        margin-top: -2rem;
+        padding: 1rem;
+        margin-bottom: 10vh;
+    }
+}
+
+.searchResultsMainDiv {
+    background: linear-gradient(#E7F0FF, #E8F1FF78 47%);
+    /* background-color: red; */
+}
+
+.MuiAutocomplete-root .MuiFormControl-root .MuiInputBase-root {
+    padding: 0;
+    padding-left: 0.5rem;
+    height: 2rem;
+    font-size: small;
+    color: rgb(196, 192, 192);
+
+}
+
+.search {
+    padding: 0.2rem;
+}
+
+.search .button {
+    padding: 0 0.5rem;
+}
+
+.hospital-card-div {
+    margin: 1rem 0;
+}
+
+.hospital-card {
+    display: flex;
+    background-color: #fff;
+    /* gap: 0.5rem; */
+    border-radius: 15px;
+
+    padding: 0.5rem 0;
+}
+
+.hospital-desc {
+    display: flex;
+    gap: 1rem;
+}
+
+.hospitalIcon {
+    align-self: baseline;
+}
+
+.hospital-desc .hospitalInfo {
+    padding-top: 2rem;
+}
+
+.like-div {
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2rem 0.4rem;
+    background-color: #00A500;
+    color: #fff;
+    font-weight: 700;
+    gap: 4px;
+    font-size: large;
+    border-radius: 3.5px;
+    margin-top: 1rem;
+}
+
+.book {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.booked {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.book button {
+    font-size: small;
+    text-transform: none;
+    background-color: #2AA7FF;
+
+}
+
+/* .booked button {
+    font-size: small;
+    text-transform: none;
+    background-color: #2AA7FF;
+
+} */
+
+@media(max-width:998px) {
+    .book {
+        text-align: center;
+        font-size: small;
+    }
+
+    .booked {
+        flex-direction: column;
+    }
+
+    .book button {
+        font-size: small;
+    }
+}
+
+@media(max-width:546px) {
+    .book {
+        text-align: center;
+        font-size: smaller;
+    }
+
+    .booked {
+        flex-direction: column;
+    }
+
+    .book button {
+        font-size: x-small;
+    }
+}
+
+.hospital-list {
+    padding: 1rem 0 5rem 0;
+}
+
+.faqsec {
+    background-color: #fff;
+}
+
+.right-banner {
+    margin-top: 1rem;
+}
+
+.calender {
+    background: #fff;
+    width: 100%;
+    padding: 2rem 1rem;
+
+}
+
+.custom-prev {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #E0E0E4;
+    border-radius: 100%;
+    padding: 1rem;
+}
+
+.custom-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #E0E0E4;
+    border-radius: 100%;
+    padding: 1rem;
+}
+
+.date-carousel {
+    border-top: 1px solid #F0F0F5;
+    border-bottom: 1px solid #F0F0F5;
+    padding: 1rem 0;
+    position: relative;
+
+}
+
+.horizontal-line {
+    position: absolute;
+    background: #E0E0E4;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+}
+
+.active-date {
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #2AA7FF;
+
+}
+
+.date-card {
+    cursor: pointer;
+}
+
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    /* gap: 1rem; */
+}
+
+.time-slots .timediv {
+    border-bottom: 1px solid #E0E0E4;
+    padding: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.time-slots .timediv .time-capsules {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+
+
+/* .date-carousel {
+    position: relative;
+    padding: 1rem;
+
+}
+
+.horizontal-line {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+
+} */
