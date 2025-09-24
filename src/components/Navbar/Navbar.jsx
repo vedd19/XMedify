@@ -32,7 +32,7 @@ export default function Navbar({ isHome }) {
 
 
                 <ul className={menuOpen ? 'navList active' : 'navList'}>
-                    <li id={isFindDoctor ? 'mark' : 'not-mark'}><Link to="/search-results" style={{ textDecoration: 'none', color: isFindDoctor ? '#2AA7FF' : '#102851' }}>Find Doctors</Link></li>
+                    <li id={isFindDoctor ? 'mark' : 'not-mark'}><Link to="/search" style={{ textDecoration: 'none', color: isFindDoctor ? '#2AA7FF' : '#102851' }}>Find Doctors</Link></li>
                     <li>Hospitals</li>
                     <li>Medicines</li>
                     <li>Surgeries</li>

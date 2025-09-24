@@ -3,6 +3,7 @@ import './Hero.css';
 import Navbar from '../Navbar/Navbar';
 import Button from '../Button/Button';
 import heroImg from '../../assets/heroImg.png'
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     return (
@@ -18,7 +19,7 @@ const Hero = () => {
                         <p className="hero-subtitle">
                             Connect instantly with a 24x7 specialist or choose to video visit a particular doctor.
                         </p>
-                        <Button>Find Centers</Button>
+                        <Link to='/search'><Button>Find Centers</Button></Link>
                     </div>
                     <div className='col-6'>
                         <img style={{ height: 'auto', maxWidth: '100%' }} src={heroImg} alt="heroImg" />

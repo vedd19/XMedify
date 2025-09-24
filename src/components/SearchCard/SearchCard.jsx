@@ -45,17 +45,6 @@ export default function SearchCard() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     return (
 
 
@@ -73,6 +62,7 @@ export default function SearchCard() {
                     slotProps={{
                         listbox: { id: "state" }
                     }}
+                    id='state'
                     renderInput={(params) => <TextField fullWidth {...params} placeholder='State'
                         InputProps={{
                             ...params.InputProps,
@@ -112,7 +102,7 @@ export default function SearchCard() {
                 />
 
 
-                <Link to={'/search-results'}><Button type={'submit'} onClick={handleSearch} id={'searchBtn'}><SearchIcon /> Search</Button></Link>
+                <Link to={'/search'}><Button type='submit' onClick={handleSearch} id='searchBtn'><SearchIcon /> Search</Button></Link>
             </div>
 
             <p style={{ fontWeight: '500', textAlign: 'center', marginBottom: '1rem' }}>You may be looking for</p>

@@ -17,13 +17,14 @@ const router = createBrowserRouter([
       element: <Home />
     },
     {
+      path: '/search',
+      element: <SearchResults />
+    },
+    {
       path: '/my-bookings',
       element: <Bookings />
     },
-    {
-      path: '/search-results',
-      element: <SearchResults />
-    }
+
     ],
   },
 ])
