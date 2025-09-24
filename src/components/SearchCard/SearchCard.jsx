@@ -58,71 +58,71 @@ export default function SearchCard() {
                 justifyContent='space-between'
             >
 
-                <div id='state'>
+                {/* <div id='state'> */}
 
-                    <Select
-                        displayEmpty
+                <Select
+                    displayEmpty
+                    id='state'
+                    name='state'
+                    value={selectedData.state}
+                    onChange={handleChange}
+                    startAdornment={
+                        <InputAdornment position='start'>
+                            <SearchIcon /></InputAdornment>
+                    }
+                    required
+                    sx={{ minWidth: 200, width: '100%' }}
 
-                        name='state'
-                        value={selectedData.state}
-                        onChange={handleChange}
-                        startAdornment={
-                            <InputAdornment position='start'>
-                                <SearchIcon /></InputAdornment>
-                        }
-                        required
-                        sx={{ minWidth: 200, width: '100%' }}
+                >
 
-                    >
-
-                        <MenuItem disabled value="" selected>
-                            State
-                        </MenuItem>
-                        {states.map((state) => {
-                            return (
-                                <MenuItem key={state} value={state}>
-                                    {state}
-                                </MenuItem>
-                            )
-                        })}
-
-
-
-                    </Select>
+                    <MenuItem disabled value="" selected>
+                        State
+                    </MenuItem>
+                    {states.map((state) => {
+                        return (
+                            <MenuItem key={state} value={state}>
+                                {state}
+                            </MenuItem>
+                        )
+                    })}
 
 
-                </div>
+
+                </Select>
 
 
-                <div id='city'>
-                    <Select
-                        displayEmpty
+                {/* </div> */}
 
-                        name='city'
-                        value={selectedData.city}
-                        onChange={handleChange}
-                        startAdornment={
-                            <InputAdornment position='start'>
-                                <SearchIcon /></InputAdornment>
-                        }
-                        required
-                        sx={{ minWidth: 200, width: '100%' }}
 
-                    >
+                {/* <div id='city'> */}
+                <Select
+                    displayEmpty
+                    id='city'
+                    name='city'
+                    value={selectedData.city}
+                    onChange={handleChange}
+                    startAdornment={
+                        <InputAdornment position='start'>
+                            <SearchIcon /></InputAdornment>
+                    }
+                    required
+                    sx={{ minWidth: 200, width: '100%' }}
 
-                        <MenuItem disabled value="" selected>
-                            City
-                        </MenuItem>
-                        {cities.map((city) => {
-                            return (
-                                <MenuItem key={city} value={city}>
-                                    {city}
-                                </MenuItem>
-                            )
-                        })}
+                >
 
-                    </Select>
-                </div>
+                    <MenuItem disabled value="" selected>
+                        City
+                    </MenuItem>
+                    {cities.map((city) => {
+                        return (
+                            <MenuItem key={city} value={city}>
+                                {city}
+                            </MenuItem>
+                        )
+                    })}
+
+                </Select>
+                {/* </div> */}
 
 
 
