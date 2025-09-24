@@ -26,7 +26,7 @@ import { useOutletContext, useSearchParams } from 'react-router-dom';
 
 
 
-export const HospitalCard = ({ name, city, state, rating, address, isBooking, bookedData, setBookedData, id, time, date }) => {
+export const HospitalCard = ({ name, city, state, rating, type, address, isBooking, bookedData, setBookedData, id, time, date }) => {
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHospital, setSelectedHospital] = useState(null);
@@ -71,7 +71,7 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
         console.log(selectedDate, "selectedDate");
         console.log(selectedTime, "selectedTime");
 
-        const newBooking = [...bookedData, { hospital: id, name: name, city: city, state: state, rating: rating, address: address, isBooking: isBooking, date: selectedDate, time: selectedTime }];
+        const newBooking = [...bookedData, { "Hospital Name": name, "City": city, "State": state, "Hospital Type": type, "Hospital overall rating": rating, "bookingDate": selectedDate, "bookingTime": selectedTime }];
         setBookedData(newBooking);
         localStorage.setItem('bookings', JSON.stringify(newBooking));
         console.log(bookedData, "bookedData");
@@ -123,7 +123,6 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
                         </div>
 
                     </div>
-
 
                 </div>
 
@@ -445,6 +444,7 @@ export default function SearchResults() {
                             key={hospital["Provider ID"]}
                             id={hospital["Provider ID"]}
                             name={hospital["Hospital Name"].toLowerCase()}
+                            type={hospital["Hospital Type"]}
                             city={hospital.City}
                             state={hospital.State}
                             rating={hospital["Hospital overall rating"]}
