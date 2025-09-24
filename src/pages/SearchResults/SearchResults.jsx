@@ -26,7 +26,7 @@ import { useOutletContext, useSearchParams } from 'react-router-dom';
 
 
 
-export const HospitalCard = ({ name, city, state, rating, type, address, isBooking, bookedData, setBookedData, id, time, date }) => {
+export const HospitalCard = ({ name, city, state, rating, type, isBooking, bookedData, setBookedData, id, time, date }) => {
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHospital, setSelectedHospital] = useState(null);
@@ -110,7 +110,7 @@ export const HospitalCard = ({ name, city, state, rating, type, address, isBooki
                     <div className="hospitalInfo">
                         <h3 style={{ color: '#14BEF0', fontWeight: '600' }}>{name}</h3>
                         <p style={{ fontWeight: '700', color: '#414146' }}>{city}, {state}</p>
-                        <p>{address}</p>
+                        <p>{type}</p>
                         <p>more</p>
                         <div className='d-flex gap-2 align-items-center'>
                             <p style={{ fontWeight: '700', color: '#02A401' }}>FREE</p>
@@ -448,7 +448,6 @@ export default function SearchResults() {
                             city={hospital.City}
                             state={hospital.State}
                             rating={hospital["Hospital overall rating"]}
-                            address={hospital.Address}
                             isBooking={isBooking}
                             bookedData={bookedData}
                             setBookedData={setBookedData}

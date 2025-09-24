@@ -102,7 +102,6 @@ function App() {
     e.preventDefault()
     if (selectedData.state && selectedData.city) {
       navigate(`/search?state=${selectedData.state}&city=${selectedData.city}`);
-
     }
 
 

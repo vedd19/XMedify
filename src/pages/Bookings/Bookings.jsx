@@ -60,7 +60,7 @@ export default function Bookings() {
 
                         {filtered.length > 0 ? (filtered.map((booking) => {
                             return (
-                                <HospitalCard name={booking.name} city={booking.city} state={booking.state} rating={booking.rating} address={booking.address} key={booking.id} isBooking={true} date={booking.date} time={booking.time} />
+                                <HospitalCard name={booking['Hospital Name']} city={booking['City']} state={booking['State']} rating={booking['Hospital overall rating']} type={'Hospital Type'} key={booking.id} isBooking={true} date={booking['bookingDate']} time={booking['bookingTime']} />
                             )
                         })) : (<div>
                             <h1> No Bookings found</h1>
