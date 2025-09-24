@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { context } from '../../Context'
 import './SearchResults.css'
 // import Button from '../../components/Button/Button';
-import { Box, Button, InputAdornment, MenuItem, Select } from '@mui/material';
+import { Box, Button, InputAdornment, MenuItem, Select, Stack } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, ButtonBase, TextField } from '@mui/material';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
@@ -18,7 +18,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { enqueueSnackbar } from 'notistack';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
 
 
 
@@ -255,21 +255,65 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
 
 export default function SearchResults() {
 
-    const { hospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor } = useContext(context);
+    const { states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor } = useContext(context);
     const [hospitalCount, setHospitalCount] = useState(0);
     const [storedHospitals, setStoredHospitals] = useState([]);
 
+    const [searchParams, setSearchParams] = useSearchParams()
+    const [state, setState] = useState(searchParams.get('state'))
+    const [city, setCity] = useState(searchParams.get('city'))
+    const [hospitals, setHospitals] = useState([])
+
+    const [isModal, setIsModal] = useState(false)
+    const [bookingDetails, setBookingDetails] = useState({})
+    const [showBookingSuccess, setShowBookingSuccess] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        const getHospitals = async () => {
+            setHospitals([])
+            setIsLoading(true)
+            try {
+                const response = await fetch(`https://meddata-backend.onrender.com/data?state=${state}&city=${city}`);
+                const data = await response.json();
+                setHospitals(data);
+                setIsLoading(false)
+
+                // localStorage.setItem('hospitals', JSON.stringify(data));
+                console.log(data);
+            }
+            catch (err) {
+                setIsLoading(false)
+                console.log(err, 'err while fetching hospitals')
+            }
+        }
+
+        if (state && city) {
+            getHospitals()
+        }
+    }, [state, city]);
+
+    useEffect(() => {
+        setState(searchParams.get('state'))
+        setCity(searchParams.get('city'));
+    }, [searchParams])
 
     useEffect(() => {
         setIsHome(false);
         setIsFindDoctor(true);
     }, []);
 
-    useEffect(() => {
-        const storedHos = JSON.parse(localStorage.getItem('hospitals')) || [];
-        setStoredHospitals(storedHos);
-        setHospitalCount(storedHos.length);
-    }, [hospitals]);
+    // useEffect(() => {
+    //     const storedHos = JSON.parse(localStorage.getItem('hospitals')) || [];
+    //     setStoredHospitals(storedHos);
+    //     setHospitalCount(storedHos.length);
+    // }, [hospitals]);
+
+
+    // const handleBookingModal = (details) => {
+    //     setBookingDetails(details)
+    //     setIsModal(true)
+    // }
 
 
 
@@ -288,33 +332,6 @@ export default function SearchResults() {
                     sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}
                     justifyContent='space-between'
                 >
-
-                    {/* <Autocomplete
-                        value={localStorage.getItem('state') || null}
-                        onChange={(e, newValue) => handleStateChange(e, newValue)}
-                        freeSolo
-                        options={states.map((option) => option)}
-                        slotProps={{
-                            listbox: { id: "state" }
-                        }}
-                        renderInput={(params) => <TextField fullWidth {...params} placeholder='State'
-                            InputProps={{
-                                ...params.InputProps,
-                                startAdornment: (
-                                    <>
-                                        <PlaceOutlinedIcon style={{ color: 'lightgray' }} />
-                                        {params.InputProps.startAdornment}
-                                    </>
-                                )
-                            }}
-                        />
-                        }
-                    /> */}
-
-
-
-
-
 
                     <Select
                         displayEmpty
@@ -394,17 +411,36 @@ export default function SearchResults() {
             </div>
 
 
-            <div className='details container'>
-                <h1>{storedHospitals.length} medical centers available in {storedHospitals[0]?.State}</h1>
-                <p style={{ color: 'gray', fontWeight: 400 }}> <span><CheckCircleOutlinedIcon /></span>Book appointments with minimum wait-time & verified doctor details</p>
-            </div>
+
+
+            {hospitals.length > 0 && (
+                <div className='details container'>
+                    <h1>{hospitals.length} medical centers available in {state}</h1>
+                    <p style={{ color: 'gray', fontWeight: 400 }}> <span><CheckCircleOutlinedIcon /></span>Book appointments with minimum wait-time & verified doctor details</p>
+                </div>
+            )}
+
+
+            {/* <Stack alignItems='flex-start' direction={{md:'row'}}>
+    <Stack
+    mb={{xs:4, md:0}}
+    spacing={3}
+    width={{xs:1,md:'calc(100% - 384px)*'}}
+    mr='24px'
+    >
+        {hospitals.length > 0 && hospitals.map((hospital) => {
+
+        })}
+    </Stack>
+</Stack> */}
+
 
             <div className="hospital-list container">
                 <div className='row'>
                     <div className='col-md-8'>
                         {/* <HospitalCard /> */}
                         {console.log(hospitals, "hospitals in search results")}
-                        {storedHospitals && hospitalCount > 0 && (storedHospitals.map((hospital) => <HospitalCard
+                        {hospitals.length > 0 && (hospitals.map((hospital) => <HospitalCard
 
                             key={hospital["Provider ID"]}
                             id={hospital["Provider ID"]}
@@ -416,11 +452,6 @@ export default function SearchResults() {
                             isBooking={isBooking}
                             bookedData={bookedData}
                             setBookedData={setBookedData}
-                        // selectedIndex={selectedIndex}
-                        // setSelectedIndex={setSelectedIndex}
-                        // dateArray={dateArray}
-                        // weekDays={weekDays}
-                        // months={months}
 
                         />))}
                     </div>

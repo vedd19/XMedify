@@ -64,39 +64,33 @@ function App() {
     getCities();
   }, [selectedData.state])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    async function getMedicalCenters() {
-      if (!selectedData.city || !selectedData.state) {
-        console.log('state or city is empty')
-        return;
-      }
+  //   async function getMedicalCenters() {
+  //     if (!selectedData.city || !selectedData.state) {
+  //       console.log('state or city is empty')
+  //       return;
+  //     }
 
-      try {
-        const response = await fetch(`https://meddata-backend.onrender.com/data?state=${selectedData.state}&city=${selectedData.city}`);
-        const data = await response.json();
-        setHospitals(data);
-        localStorage.setItem('hospitals', JSON.stringify(data));
-        console.log(data);
-      }
-      catch (err) {
-        console.log(err, 'err while fetching hospitals')
-      }
-    }
+  //     try {
+  //       const response = await fetch(`https://meddata-backend.onrender.com/data?state=${selectedData.state}&city=${selectedData.city}`);
+  //       const data = await response.json();
+  //       setHospitals(data);
+  //       localStorage.setItem('hospitals', JSON.stringify(data));
+  //       console.log(data);
+  //     }
+  //     catch (err) {
+  //       console.log(err, 'err while fetching hospitals')
+  //     }
+  //   }
 
-    getMedicalCenters();
+  //   getMedicalCenters();
 
-  }, [selectedData.city]);
-
-
-
-  // const handleStateChange = (event, newValue) => {
-  //   setCities([]);
-
-  //   setSelectedData({ state: newValue, city: "" });
+  // }, [selectedData.city]);
 
 
-  // }
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -104,22 +98,17 @@ function App() {
   }
 
   const handleSearch = (e) => {
-    // if (!selectedData.state || !selectedData.city) {
-    //   enqueueSnackbar('Please select a valid state and city', { variant: 'warning' });
-    //   return;
-    // }
+
     e.preventDefault()
     if (selectedData.state && selectedData.city) {
-      navigate('/search');
+      navigate(`/search?state=${selectedData.state}&city=${selectedData.city}`);
 
     }
-    // else {
-    //   enqueueSnackbar('please select valide state and city')
-    // }
 
 
-    localStorage.setItem('state', selectedData.state);
-    localStorage.setItem('city', selectedData.city);
+
+    // localStorage.setItem('state', selectedData.state);
+    // localStorage.setItem('city', selectedData.city);
 
 
 
