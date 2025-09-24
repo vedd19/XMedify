@@ -58,115 +58,72 @@ export default function SearchCard() {
                 justifyContent='space-between'
             >
 
+                <div id='state'>
 
+                    <Select
+                        displayEmpty
 
+                        name='state'
+                        value={selectedData.state}
+                        onChange={handleChange}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <SearchIcon /></InputAdornment>
+                        }
+                        required
+                        sx={{ minWidth: 200, width: '100%' }}
 
+                    >
 
-                {/* <Autocomplete
-                    value={selectedData.state || null}
-                    onChange={(e, newValue) => handleStateChange(e, newValue)}
-                    freeSolo
-                    options={states.map((option) => option)}
-                    slotProps={{
-                        listbox: { id: "state" }
-                    }}
-                    id='state'
-                    renderInput={(params) => <TextField fullWidth {...params} placeholder='State'
-                        InputProps={{
-                            ...params.InputProps,
-                            startAdornment: (
-                                <>
-                                    <SearchIcon style={{ color: 'gray' }} />
-                                    {params.InputProps.startAdornment}
-                                </>
+                        <MenuItem disabled value="" selected>
+                            State
+                        </MenuItem>
+                        {states.map((state) => {
+                            return (
+                                <MenuItem key={state} value={state}>
+                                    {state}
+                                </MenuItem>
                             )
-                        }}
-                    />
-                    }
-                />
+                        })}
 
 
-                <Autocomplete
-                    value={selectedData.city || null}
-                    onChange={(e, newValue) => handleCityChange(e, newValue)}
-                    freeSolo
-                    disabled={!selectedData.state}
-                    options={cities.map((option) => option)}
-                    slotProps={{
-                        listbox: { id: "city" }
-                    }}
-                    renderInput={(params) => <TextField fullWidth {...params} placeholder='City'
-                        InputProps={{
-                            ...params.InputProps,
-                            startAdornment: (
-                                <>
-                                    <SearchIcon style={{ color: 'gray' }} />
-                                    {params.InputProps.startAdornment}
-                                </>
+
+                    </Select>
+
+
+                </div>
+
+
+                <div id='city'>
+                    <Select
+                        displayEmpty
+
+                        name='city'
+                        value={selectedData.city}
+                        onChange={handleChange}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <SearchIcon /></InputAdornment>
+                        }
+                        required
+                        sx={{ minWidth: 200, width: '100%' }}
+
+                    >
+
+                        <MenuItem disabled value="" selected>
+                            City
+                        </MenuItem>
+                        {cities.map((city) => {
+                            return (
+                                <MenuItem key={city} value={city}>
+                                    {city}
+                                </MenuItem>
                             )
-                        }}
-                    />
-                    }
-                /> */}
+                        })}
 
-                <Select
-                    displayEmpty
-                    id='state'
-                    name='state'
-                    value={selectedData.state}
-                    onChange={handleChange}
-                    startAdornment={
-                        <InputAdornment position='start'>
-                            <SearchIcon /></InputAdornment>
-                    }
-                    required
-                    sx={{ minWidth: 200, width: '100%' }}
+                    </Select>
+                </div>
 
-                >
-
-                    <MenuItem disabled value="" selected>
-                        State
-                    </MenuItem>
-                    {states.map((state) => {
-                        return (
-                            <MenuItem key={state} value={state}>
-                                {state}
-                            </MenuItem>
-                        )
-                    })}
-
-
-
-                </Select>
-
-
-                <Select
-                    displayEmpty
-                    id='city'
-                    name='city'
-                    value={selectedData.city}
-                    onChange={handleChange}
-                    startAdornment={
-                        <InputAdornment position='start'>
-                            <SearchIcon /></InputAdornment>
-                    }
-                    required
-                    sx={{ minWidth: 200, width: '100%' }}
-
-                >
-
-                    <MenuItem disabled value="" selected>
-                        City
-                    </MenuItem>
-                    {cities.map((city) => {
-                        return (
-                            <MenuItem key={city} value={city}>
-                                {city}
-                            </MenuItem>
-                        )
-                    })}
-
-                </Select>
 
 
 
