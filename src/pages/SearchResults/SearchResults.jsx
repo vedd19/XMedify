@@ -254,14 +254,14 @@ export const HospitalCard = ({ name, city, state, rating, type, isBooking, booke
 
 export default function SearchResults() {
 
-    const { states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor } = useContext(context);
+    const { setIsSearch, endpoint, setEndpoint, hospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor, setHospitals, getHospitals } = useContext(context);
     const [hospitalCount, setHospitalCount] = useState(0);
     const [storedHospitals, setStoredHospitals] = useState([]);
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [state, setState] = useState(searchParams.get('state'))
     const [city, setCity] = useState(searchParams.get('city'))
-    const [hospitals, setHospitals] = useState([])
+
 
     const [isModal, setIsModal] = useState(false)
     const [bookingDetails, setBookingDetails] = useState({})
@@ -269,24 +269,6 @@ export default function SearchResults() {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        const getHospitals = async () => {
-            setHospitals([])
-            setIsLoading(true)
-            try {
-                const response = await fetch(`https://meddata-backend.onrender.com/data?state=${state}&city=${city}`);
-                const data = await response.json();
-                setHospitals(data);
-                setIsLoading(false)
-
-                // localStorage.setItem('hospitals', JSON.stringify(data));
-                console.log(data);
-            }
-            catch (err) {
-                setIsLoading(false)
-                console.log(err, 'err while fetching hospitals')
-            }
-        }
-
         if (state && city) {
             getHospitals()
         }
@@ -300,6 +282,8 @@ export default function SearchResults() {
     useEffect(() => {
         setIsHome(false);
         setIsFindDoctor(true);
+        setIsSearch(true);
+        setEndpoint(`https://meddata-backend.onrender.com/data?state=${state}&city=${city}`)
     }, []);
 
     // useEffect(() => {

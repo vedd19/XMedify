@@ -11,7 +11,6 @@ import { enqueueSnackbar } from 'notistack';
 function App() {
 
   const [isHome, setIsHome] = useState(false);
-  const [hospitals, setHospitals] = useState([])
   const [states, setStates] = useState([])
   const [cities, setCities] = useState([])
   const [selectedData, setSelectedData] = useState({
@@ -22,6 +21,10 @@ function App() {
   const [isBooking, setIsBooking] = useState(false);
   const [bookedData, setBookedData] = useState(JSON.parse(localStorage.getItem('bookings')) || []);
   const [isFindDoctor, setIsFindDoctor] = useState(false)
+  const [hospitals, setHospitals] = useState([])
+  const [isSearch, setIsSearch] = useState(false);
+  const [endpoint, setEndpoint] = useState('')
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -89,7 +92,27 @@ function App() {
   // }, [selectedData.city]);
 
 
+  const getHospitals = async () => {
+    setHospitals([])
+    // setIsLoading(true)
+    try {
 
+      if (!isSearch) {
+        setEndpoint(`https://meddata-backend.onrender.com/data?state=${selectedData.state}&city=${selectedData.city}`)
+      }
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      setHospitals(data);
+      // setIsLoading(false)
+
+      // localStorage.setItem('hospitals', JSON.stringify(data));
+      console.log(data);
+    }
+    catch (err) {
+      // setIsLoading(false)
+      console.log(err, 'err while fetching hospitals')
+    }
+  }
 
 
   const handleChange = (e) => {
@@ -100,7 +123,10 @@ function App() {
   const handleSearch = (e) => {
 
     e.preventDefault()
+
+
     if (selectedData.state && selectedData.city) {
+      getHospitals();
       navigate(`/search?state=${selectedData.state}&city=${selectedData.city}`);
     }
 
@@ -120,7 +146,7 @@ function App() {
   return (
 
     <>
-      <context.Provider value={{ hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, isHome, setIsHome, setIsFindDoctor, isFindDoctor }}>
+      <context.Provider value={{ endpoint, setIsSearch, getHospitals, setEndpoint, hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, isHome, setIsHome, setIsFindDoctor, isFindDoctor }}>
         {/* {console.log(isHome, "isHome")} */}
         {!isHome && <Navbar />}
         <Outlet />

@@ -38,14 +38,15 @@ import { context } from '../../Context';
 // export const isHomeContext = createContext();
 
 export default function Home() {
-    const { setIsHome, setIsFindDoctor } = useContext(context)
+    const { setIsSearch, setIsHome, setIsFindDoctor } = useContext(context)
     const [caraouselImg, setCaraouselImg] = useState([{ img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg }, { img: pagImg },])
 
     const [docCaraouselImg, setDocCaraouselImg] = useState([{ img: docImg }, { img: docImg }, { img: docImg }, { img: docImg }, { img: docImg }])
 
     useEffect(() => {
         setIsHome(true);
-        setIsFindDoctor(false)
+        setIsFindDoctor(false);
+        setIsSearch(false);
     }, []);
 
 

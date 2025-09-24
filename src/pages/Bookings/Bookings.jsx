@@ -9,7 +9,7 @@ import banner from '../../assets/searchResults/searchResultBanner.png'
 
 export default function Bookings() {
 
-    const { setIsHome, setIsFindDoctor } = useContext(context)
+    const { setIsSearch, setIsHome, setIsFindDoctor } = useContext(context)
 
     const [bookingData, setBookingData] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -18,6 +18,7 @@ export default function Bookings() {
     useEffect(() => {
         setIsHome(false);
         setIsFindDoctor(false);
+        setIsSearch(false);
     }, []);
 
     useEffect(() => {
