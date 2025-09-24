@@ -21,7 +21,7 @@ export default function Footer() {
                 </div>
 
                 <div className='d-flex gap-2 flex-column align-items-start'>
-                    <h1 style={{ color: '#1B3C74' }}>Download the <span style={{ color: '#2AA7FF' }}>Medify</span> App </h1>
+                    <h2 style={{ color: '#1B3C74' }}>Download the <span style={{ color: '#2AA7FF' }}>Medify</span> App </h2>
                     <p style={{ color: '#414146' }}>Get the link to download teh app</p>
 
                     <div className='sms d-none d-md-flex gap-2 flex-md-wrap' style={{ height: '2.5rem' }}>

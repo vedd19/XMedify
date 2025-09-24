@@ -15,7 +15,7 @@ export default function FAQ() {
         <div className="faq py-4">
 
             <p style={{ color: '#2AA7FF', fontWeight: '600', textAlign: 'center' }}>Get Your Answer</p>
-            <h1 style={{ color: '#1B3C74', textAlign: 'center' }}>Frequently Asked Questions</h1>
+            <h2 style={{ color: '#1B3C74', textAlign: 'center' }}>Frequently Asked Questions</h2>
 
             <div className="container d-flex justify-content-between align-items-center py-4">
                 <div style={{ width: "100%" }}>

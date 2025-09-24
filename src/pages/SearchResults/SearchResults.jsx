@@ -399,6 +399,7 @@ export default function SearchResults() {
             {hospitals.length > 0 && (
                 <div className='details container'>
                     <h1>{hospitals.length} medical centers available in {state.toLowerCase()}</h1>
+                    {console.log(state.toLocaleLowerCase())}
                     <p style={{ color: 'gray', fontWeight: 400 }}> <span><CheckCircleOutlinedIcon /></span>Book appointments with minimum wait-time & verified doctor details</p>
                 </div>
             )}
