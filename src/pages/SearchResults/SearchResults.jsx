@@ -444,7 +444,7 @@ export default function SearchResults() {
 
                             key={hospital["Provider ID"]}
                             id={hospital["Provider ID"]}
-                            name={hospital["Hospital Name"]}
+                            name={hospital["Hospital Name"].toLowerCase()}
                             city={hospital.City}
                             state={hospital.State}
                             rating={hospital["Hospital overall rating"]}
