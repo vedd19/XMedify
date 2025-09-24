@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { context } from '../../Context'
 import './SearchResults.css'
 // import Button from '../../components/Button/Button';
-import { Button } from '@mui/material';
+import { Box, Button, InputAdornment, MenuItem, Select } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, ButtonBase, TextField } from '@mui/material';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
@@ -255,7 +255,7 @@ export const HospitalCard = ({ name, city, state, rating, address, isBooking, bo
 
 export default function SearchResults() {
 
-    const { hospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor } = useContext(context);
+    const { hospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, setIsHome, setIsFindDoctor } = useContext(context);
     const [hospitalCount, setHospitalCount] = useState(0);
     const [storedHospitals, setStoredHospitals] = useState([]);
 
@@ -282,9 +282,14 @@ export default function SearchResults() {
             </div>
 
             <div className='searchDivresults container'>
-                <div className='search'>
+                <Box
+                    component='form'
+                    onSubmit={handleSearch}
+                    sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}
+                    justifyContent='space-between'
+                >
 
-                    <Autocomplete
+                    {/* <Autocomplete
                         value={localStorage.getItem('state') || null}
                         onChange={(e, newValue) => handleStateChange(e, newValue)}
                         freeSolo
@@ -304,35 +309,88 @@ export default function SearchResults() {
                             }}
                         />
                         }
-                    />
+                    /> */}
 
 
-                    <Autocomplete
-                        value={localStorage.getItem('city') || null}
-                        onChange={(e, newValue) => handleCityChange(e, newValue)}
-                        freeSolo
-                        // disabled={!selectedData.state}
-                        options={cities.map((option) => option)}
-                        slotProps={{
-                            listbox: { id: "city" }
-                        }}
-                        renderInput={(params) => <TextField fullWidth {...params} placeholder='City'
-                            InputProps={{
-                                ...params.InputProps,
-                                startAdornment: (
-                                    <>
-                                        <PlaceOutlinedIcon style={{ color: 'lightgray' }} />
-                                        {params.InputProps.startAdornment}
-                                    </>
-                                )
-                            }}
-                        />
+
+
+
+
+                    <Select
+                        displayEmpty
+                        id='state'
+                        name='state'
+                        value={selectedData.state}
+                        onChange={handleChange}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <SearchIcon /></InputAdornment>
                         }
-                    />
+                        required
+                        sx={{ minWidth: 200, width: '100%' }}
+
+                    >
+
+                        <MenuItem disabled value="" selected>
+                            State
+                        </MenuItem>
+                        {states.map((state) => {
+                            return (
+                                <MenuItem key={state} value={state}>
+                                    {state}
+                                </MenuItem>
+                            )
+                        })}
+
+                    </Select>
 
 
-                    <Button type={'submit'} onClick={handleSearch} id={'searchBtn'}><SearchIcon /> Search</Button>
-                </div>
+                    <Select
+                        displayEmpty
+                        id='city'
+                        name='city'
+                        value={selectedData.city}
+                        onChange={handleChange}
+                        startAdornment={
+                            <InputAdornment position='start'>
+                                <SearchIcon /></InputAdornment>
+                        }
+                        required
+                        sx={{ minWidth: 200, width: '100%' }}
+
+                    >
+
+                        <MenuItem disabled value="" selected>
+                            City
+                        </MenuItem>
+                        {cities.map((city) => {
+                            return (
+                                <MenuItem key={city} value={city}>
+                                    {city}
+                                </MenuItem>
+                            )
+                        })}
+
+                    </Select>
+
+
+                    <Button
+                        id='searchBtn'
+                        variant='contained'
+                        type='submit'
+                        size='large'
+                        startIcon={<SearchIcon />}
+                        sx={{ py: '15px', px: 8, flexShrink: 0 }}
+                        disableElevation
+
+                    >
+
+                        Search
+
+
+                    </Button>
+
+                </Box>
             </div>
 
 

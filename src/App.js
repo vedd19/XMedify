@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import { context } from './Context'
 import { enqueueSnackbar } from 'notistack';
@@ -22,6 +22,7 @@ function App() {
   const [isBooking, setIsBooking] = useState(false);
   const [bookedData, setBookedData] = useState(JSON.parse(localStorage.getItem('bookings')) || []);
   const [isFindDoctor, setIsFindDoctor] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function getStates() {
@@ -89,23 +90,32 @@ function App() {
 
 
 
-  const handleStateChange = (event, newValue) => {
-    setCities([]);
+  // const handleStateChange = (event, newValue) => {
+  //   setCities([]);
 
-    setSelectedData({ state: newValue, city: "" });
+  //   setSelectedData({ state: newValue, city: "" });
 
 
+  // }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setSelectedData((prev) => ({ ...prev, [name]: value }));
   }
 
-  const handleCityChange = (event, newValue) => {
-    setSelectedData({ ...selectedData, city: newValue });
-  }
+  const handleSearch = (e) => {
+    // if (!selectedData.state || !selectedData.city) {
+    //   enqueueSnackbar('Please select a valid state and city', { variant: 'warning' });
+    //   return;
+    // }
+    e.preventDefault()
+    if (selectedData.state && selectedData.city) {
+      navigate('/search');
 
-  const handleSearch = async () => {
-    if (!selectedData.state || !selectedData.city) {
-      enqueueSnackbar('Please select a valid state and city', { variant: 'warning' });
-      return;
     }
+    // else {
+    //   enqueueSnackbar('please select valide state and city')
+    // }
 
 
     localStorage.setItem('state', selectedData.state);
@@ -122,7 +132,7 @@ function App() {
   return (
 
     <>
-      <context.Provider value={{ hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, isHome, setIsHome, setIsFindDoctor, isFindDoctor }}>
+      <context.Provider value={{ hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, isBooking, setIsBooking, bookedData, setBookedData, isHome, setIsHome, setIsFindDoctor, isFindDoctor }}>
         {/* {console.log(isHome, "isHome")} */}
         {!isHome && <Navbar />}
         <Outlet />

@@ -1,5 +1,5 @@
-import { TextField, InputAdornment, Autocomplete, Box } from '@mui/material'
-import Button from '../Button/Button'
+import { TextField, InputAdornment, Autocomplete, Box, Select, MenuItem, Button } from '@mui/material'
+
 import './SearchCard.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ambulance from '../../assets/searchCard/Ambulance.png'
@@ -34,7 +34,7 @@ export default function SearchCard() {
 
 
 
-    const { hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleStateChange, handleCityChange, handleSearch, setIsHome } = useContext(context)
+    const { hospitals, setHospitals, states, setStates, cities, setCities, selectedData, setSelectedData, handleChange, handleSearch, setIsHome } = useContext(context)
 
 
 
@@ -50,11 +50,19 @@ export default function SearchCard() {
 
         // { console.log(hospitals, "hospitals in search card") }
         < div className="searchDiv container" >
-            <div className='search'>
+            {/* <div className='search container'> */}
+            <Box
+                component='form'
+                onSubmit={handleSearch}
+                sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}
+                justifyContent='space-between'
+            >
 
 
 
-                <Autocomplete
+
+
+                {/* <Autocomplete
                     value={selectedData.state || null}
                     onChange={(e, newValue) => handleStateChange(e, newValue)}
                     freeSolo
@@ -99,11 +107,86 @@ export default function SearchCard() {
                         }}
                     />
                     }
-                />
+                /> */}
+
+                <Select
+                    displayEmpty
+                    id='state'
+                    name='state'
+                    value={selectedData.state}
+                    onChange={handleChange}
+                    startAdornment={
+                        <InputAdornment position='start'>
+                            <SearchIcon /></InputAdornment>
+                    }
+                    required
+                    sx={{ minWidth: 200, width: '100%' }}
+
+                >
+
+                    <MenuItem disabled value="" selected>
+                        State
+                    </MenuItem>
+                    {states.map((state) => {
+                        return (
+                            <MenuItem key={state} value={state}>
+                                {state}
+                            </MenuItem>
+                        )
+                    })}
 
 
-                <Link to={'/search'}><Button type='submit' onClick={handleSearch} id='searchBtn'><SearchIcon /> Search</Button></Link>
-            </div>
+
+                </Select>
+
+
+                <Select
+                    displayEmpty
+                    id='city'
+                    name='city'
+                    value={selectedData.city}
+                    onChange={handleChange}
+                    startAdornment={
+                        <InputAdornment position='start'>
+                            <SearchIcon /></InputAdornment>
+                    }
+                    required
+                    sx={{ minWidth: 200, width: '100%' }}
+
+                >
+
+                    <MenuItem disabled value="" selected>
+                        City
+                    </MenuItem>
+                    {cities.map((city) => {
+                        return (
+                            <MenuItem key={city} value={city}>
+                                {city}
+                            </MenuItem>
+                        )
+                    })}
+
+                </Select>
+
+
+
+                <Button
+                    id='searchBtn'
+                    variant='contained'
+                    type='submit'
+                    size='large'
+                    startIcon={<SearchIcon />}
+                    sx={{ py: '15px', px: 8, flexShrink: 0 }}
+                    disableElevation
+
+                >
+
+                    Search
+
+
+                </Button>
+
+            </Box>
 
             <p style={{ fontWeight: '500', textAlign: 'center', marginBottom: '1rem' }}>You may be looking for</p>
 

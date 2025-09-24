@@ -47,11 +47,11 @@
 }
 
 .search {
-    display: flex;
-    justify-content: space-around;
+    /* display: flex;
+    justify-content: space-around; */
     /* height: 40px; */
-    flex-wrap: wrap;
-    padding-bottom: 3rem;
+    /* flex-wrap: wrap;
+    padding-bottom: 3rem; */
 
 
 }
