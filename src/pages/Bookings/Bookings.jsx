@@ -21,10 +21,12 @@ export default function Bookings() {
     }, []);
 
     useEffect(() => {
-        const x = JSON.parse(localStorage.getItem('bookings'))
+        const storedBookings = localStorage.getItem('bookings');
+        const x = storedBookings ? JSON.parse(storedBookings) : [];
         setBookingData(x);
-        setFiltered(x)
-    }, [])
+        setFiltered(x);
+    }, []);
+
 
     const handleHospitalChange = (e) => {
         const fl = bookingData.filter((item) => item.name.toLowerCase().includes(e.target.value.toLowerCase()));
